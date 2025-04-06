@@ -1,0 +1,29 @@
+; SIMH/AltairZ80 Configuration File for SCP MS-DOS 1.25 
+; Copyright (c) 2008 Howard M. Harte
+; www.86dos.org
+;
+; Press <return> to get into the Monitor, and then type
+; 'B' to boot MS-DOS 1.25.
+;
+set cpu 8086
+
+; load SCP Monitor
+load mon.com 0
+load mon.com ff800
+
+; Set serial port for SCP
+set sio port=f6/0/0/0/0/f/0/t
+set sio port=f7/0/2/0/1/f/0/f
+set sio ansi
+
+set cromfdc norom
+set cromfdc en
+set wd179x en
+d cromfdc fdctype 16
+att cromfdc0 msblank.imd
+att cromfdc1 msdoscr.imd
+
+; Start monitor, press enter to get '>' prompt.
+echo Press return to get to the Monitor '>' prompt.
+echo then 'B' to boot MS-DOS.
+go ffff0
